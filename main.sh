@@ -4,7 +4,7 @@ opts=("$@")
 arg1description="The first argument is the parameter name; it should either start with '--' followed with the param named or start with '-' followed with a short one-letter param named."
 arg2description="The second argument given to the function will contain the parameter (or empty if no value) after the function is called."
 
-getoptions() {
+getoption() {
     if [[ ! $1 =~ ^--? ]]; then
         echo $arg1description >&1
         return 1
@@ -32,19 +32,19 @@ getoptions() {
 # Run: 'bash main.sh -abc alphabet -de --greet Hello world --text "Lorem ipsum" -x y --empty'
 # Results after running above
 
-getoptions -a value
+getoption -a value
 echo $value             # alphabet
 
-getoptions -b value
+getoption -b value
 echo $value             # alphabet
 
-getoptions --greet whatever
+getoption --greet whatever
 echo $whatever          # Hello
 
-getoptions --text value
+getoption --text value
 echo $value             # Lorem ipsum
 
-getoptions --empty value
+getoption --empty value
 echo $value             # 
 
 # The value argment will most likely be an empty string in both situations when a parameter is defined with no value, or is not defined at all.
@@ -52,11 +52,11 @@ echo $value             #
 # The parameter will be replaced with true if the parameter is defined and false otherwise.
 # Example:
 
-getoptions --text value defined
+getoption --text value defined
 echo $defined            # true
 
-getoptions --notDefined value defined
+getoption --notDefined value defined
 echo $defined            # false
 
-getoptions --empty value defined
+getoption --empty value defined
 echo $defined            # true
