@@ -1,14 +1,18 @@
 #!/bin/bash
 
-opts=("$@")
-arg1description="The first argument is the parameter name; it should either start with '--' followed with the param named or start with '-' followed with a short one-letter param named."
-arg2description="The second argument given to the function will contain the parameter (or empty if no value) after the function is called."
-
 getoption() {
+    opts=("$@")
+    
     if [[ ! $1 =~ ^--? ]]; then
-        echo $arg1description >&1
+        echo "Missing parameter and variable name. Example: getoption --text value" >&1
         return 1
     fi
+    
+    if [[ -z $2 ]]; then
+        echo "Missing variable name. Example: getoption $1 value. The variable name holds the value of the parameter" >&1
+        return 1
+    fi
+
     shortparamname=${1#-}
     for i in "${!opts[@]}"; do
         opt="${opts[$i]}" next="${opts[$i + 1]}"
@@ -61,4 +65,5 @@ echo $defined            # false
 getoption --empty value defined
 echo $defined            # true
 
-# Add line 3 to 29 to bashrc so you can use without sourcing or puttoing directly into code.
+# Add line 3 to 33 to bashrc so you can use without sourcing or putting directly into code.
+# getoption is supposed to be used a bash file, not on the command line.
