@@ -1,10 +1,10 @@
 An alternative to the builtin '`getopts`', but better.
 
-Usage examples:
+# Usage examples:
 ```bash
-bash main.sh --text "Lorem ipsum" anythingelse -x y
+bash test.sh --text "Lorem ipsum" anythingelse -x y
 
-# Now, inside main.sh
+# Now, inside test.sh
 # Get the value of --text from the command above
 getoption --text value
 echo $value             # Lorem ipsum
