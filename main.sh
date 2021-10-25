@@ -60,3 +60,5 @@ echo $defined            # false
 
 getoption --empty value defined
 echo $defined            # true
+
+# Add line 3 to 29 to bashrc so you can use without sourcing or puttoing directly into code.
