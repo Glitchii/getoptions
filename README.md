@@ -1,4 +1,16 @@
-If you don't know about `getopts`, you should probably try it out fisrt—it's a built-in.
-`getopts` doesn't always work as I want, so I made this short script.
+An alternative to the builtin '`getopts`', but better.
 
-Look in `main.sh` for usage.
+Usage examples:
+```bash
+bash main.sh --text "Lorem ipsum" anythingelse -x y
+
+# Now, inside main.sh
+# Get the value of --text from the command above
+getoption --text value
+echo $value             # Lorem ipsum
+
+# Get the value of x
+getoption -x value
+echo $value             # y
+```
+More examples in main.sh.
